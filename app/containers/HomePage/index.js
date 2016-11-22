@@ -21,7 +21,9 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
         <h1>
           <FormattedMessage {...messages.header} />
         </h1>
-        <Video />
+        <div class="putVidsHere">
+          <Video class="remoteVideo" />
+        </div>
       </div>
     );
   }
