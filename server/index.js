@@ -5,6 +5,7 @@ const logger = require('./logger');
 const fs = require('fs');
 const path = require('path');
 
+const socketSetup = require('./middlewares/socketMiddleware.js');
 const argv = require('minimist')(process.argv.slice(2));
 const setup = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -32,6 +33,10 @@ setup(app, {
 const port = argv.port || process.env.PORT || 3000;
 
 const server = require('https').createServer(serverConfig, app);
+
+// ONLY SETUP ABOVE THIS LINE
+socketSetup(server);
+
 // Start your app.
 server.listen(port, (err) => {
   if (err) {
